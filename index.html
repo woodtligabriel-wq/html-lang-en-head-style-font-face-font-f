@@ -2557,7 +2557,7 @@ CREATE TABLE idempotency_keys (chave_hash VARCHAR(64) PRIMARY KEY, endpoint VARC
           }),
 
           icpTestMsg && p("div", {
-            className: ,
+            className: "p-3 rounded-xl border text-[11px] font-mono leading-relaxed text-center " + (icpTestMsg.includes('✅') ? "bg-emerald-950/30 border-emerald-500/30 text-emerald-300" : "bg-amber-950/30 border-amber-500/30 text-amber-300"),
             children: icpTestMsg
           }),
 
