@@ -124,6 +124,18 @@
       "created_at": "2026-11-10T21:55:55.181Z",
       "sender": "macOS",
       "is_cancelled": false
+    },
+    {
+      "id": "972b2b33-06d0-42b5-a72b-00abdc92822d",
+      "role": "user",
+      "content": "Explique passo a passo para o teste (ainda sou meio leigo)",
+      "status": "pending",
+      "model": "gemini-3.8-flash-high",
+      "client_type": "gemini-bridge",
+      "parent_message_id": null,
+      "created_at": "2026-11-10T22:07:03.474Z",
+      "sender": "ios",
+      "is_cancelled": false
     }
   ]
 }
