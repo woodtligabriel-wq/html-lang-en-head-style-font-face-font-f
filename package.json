@@ -1,0 +1,24 @@
+{
+  "name": "muse-meta-canais-pagamentos",
+  "version": "2.4.1",
+  "description": "Camada de Canais e Pagamentos - WhatsApp Cloud API + Pix BACEN + Banco de Dados",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node backend/server.js",
+    "test": "node backend/test-flow.js"
+  },
+  "keywords": [
+    "pix",
+    "bacen",
+    "meta",
+    "whatsapp",
+    "fcr",
+    "lgpd",
+    "worm",
+    "sqlite",
+    "supabase"
+  ],
+  "author": "Muse + Meta Architecture Team",
+  "license": "MIT"
+}
