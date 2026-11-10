@@ -8,6 +8,7 @@ const http = require('node:http');
 const url = require('node:url');
 const crypto = require('node:crypto');
 const db = require('./database');
+const icpAuth = require('./icp-auth');
 
 const PORT = process.env.PORT || 3001;
 const PIX_SECRET = process.env.PIX_WEBHOOK_SECRET || 'muse_secret_homolog_2026';
@@ -95,6 +96,7 @@ const server = http.createServer(async (req, res) => {
     // 1. Health check & Status geral
     if (pathname === '/api/status' && method === 'GET') {
       const stats = db.getDatabaseStats();
+      const icpStatus = icpAuth.verificarStatusCertificado();
       return sendJson(res, 200, {
         status: 'ONLINE',
         service: 'MUSE + META | Camada de Canais e Pagamentos',
@@ -110,6 +112,7 @@ const server = http.createServer(async (req, res) => {
             provider: process.env.PIX_PROVIDER || 'EFI_BANK / GERENCIANET (HOMOLOGAÇÃO)',
             status: 'CONECTADO',
             mtls_enforced: true,
+            icp_brasil_chain: icpStatus.status,
             quarantine_window_sec: 120
           },
           governance: {
@@ -118,6 +121,17 @@ const server = http.createServer(async (req, res) => {
             quorum: '2 Tech + 1 Legal'
           }
         }
+      });
+    }
+
+    // 1.1 Autenticação ICP-Brasil Pix BACEN
+    if (pathname === '/api/pix/icp-status' && method === 'GET') {
+      const specs = icpAuth.getAuthenticationSpecs();
+      const statusCert = icpAuth.verificarStatusCertificado();
+      return sendJson(res, 200, {
+        sucesso: true,
+        autenticacao: specs,
+        certificado: statusCert
       });
     }
 
